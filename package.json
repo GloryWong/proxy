@@ -1,0 +1,27 @@
+{
+  "name": "@gloxy/proxy",
+  "version": "0.1.0",
+  "description": "",
+  "bin": {
+    "proxy": "bin/cli.js"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "rimraf ./lib && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "glorywong1001@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.17",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "@types/minimist": "^1.2.2",
+    "execa": "^6.0.0",
+    "minimist": "^1.2.5",
+    "read-pkg-up": "^9.1.0"
+  }
+}

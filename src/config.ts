@@ -1,0 +1,1 @@
+export const proxyServer = "http://localhost:51837";
