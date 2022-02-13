@@ -15,11 +15,11 @@
   "author": "glorywong1001@gmail.com",
   "license": "MIT",
   "devDependencies": {
+    "@types/minimist": "^1.2.2",
     "@types/node": "^17.0.17",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
-    "@types/minimist": "^1.2.2",
     "execa": "^6.0.0",
     "minimist": "^1.2.5",
     "read-pkg-up": "^9.1.0"
