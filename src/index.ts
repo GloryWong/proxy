@@ -1,32 +1,36 @@
-import minimist from 'minimist'
-import { proxyForCommandExec } from './commandExec.js'
-import { proxyForPermanent } from './permanent.js'
-import { showVersion } from './version.js'
-import showHelp from './help.js'
+import minimist from 'minimist';
+import { proxyCmd } from './proxyCmd.js';
+import { showVersion } from './version.js';
+import showHelp from './help.js';
+import { actOnShellProxies } from './actOnShellProxies.js';
 
 const argv = minimist(process.argv.slice(2), {
   '--': true,
-  boolean: ['help', 'version', 'permanent', 'unset', 'set', 'get'],
+  boolean: ['help', 'version'],
+  string: ['on', 'off', 'set', 'unset'],
   alias: {
     h: 'help',
     v: 'version',
-    p: 'permanent',
   },
-})
+});
 
-const { _, version, permanent, unset, set, get } = argv
-const command = argv['--']?.join(' ')
+async function run() {
+  const { _, version, help, on, off, set } = argv;
+  const command = argv['--']?.join(' ');
 
-if (command) {
-  proxyForCommandExec(command)
-} else if (permanent) {
-  proxyForPermanent({
-    set,
-    unset,
-    get,
-  })
-} else if (version) {
-  showVersion()
-} else {
-  showHelp()
+  try {
+    if (command) {
+      await proxyCmd(command);
+    } else if (version) {
+      await showVersion();
+    } else if (help) {
+      await showHelp();
+    } else {
+      await actOnShellProxies({ on, off, set });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
+
+run();

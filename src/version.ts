@@ -1,11 +1,10 @@
-import { readPackageUpSync } from 'read-pkg-up'
-
-export function getVersion() {
-  const readResult = readPackageUpSync({ normalize: false })
-  return readResult?.packageJson?.version
+export async function getVersion() {
+  const { readPackageUp } = await import('read-pkg-up');
+  const readResult = await readPackageUp({ normalize: false });
+  return readResult?.packageJson?.version;
 }
 
-export function showVersion() {
-  const version = getVersion()
-  version && console.log(version)
+export async function showVersion() {
+  const version = await getVersion();
+  version && console.log(version);
 }

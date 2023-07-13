@@ -1,32 +1,30 @@
-import { getVersion } from './version.js'
+import { getVersion } from './version.js';
 
-export default function () {
+export default async function () {
   console.log(
-    `  Gloxy Proxy v${getVersion()}
+    `  Gloxy Proxy (v${await getVersion()})
 
   Description:
-    Proxy for command execute or permanent proxy setting.
-    * http and https proxy setting.
-    * permanant proxy setting is supported for \`zsh\` only.
-  
+    Set a temporary proxy for a command run or set permanent shell proxy.
+
   Usage:
     proxy [options]
 
   Options:
-    -h, --help                 Show help
-    -v, --version              Show version
-    -p, --permanent            Set proxy permanently
-      --unset                  Unset proxy permanently
-      --set                    Set proxy permanently
-      --get                    Get proxy setting(default)
-    -- [command]               Execute a command with proxy
+    --set <proxy server address>            Set the default proxy value
+    --on  [protocal]                        Turn on permanent shell proxy with the default proxy value
+    --off [protocal]                        Turn off permanent shell proxy
+    -- <command>                            Execute a command with the default proxy value
+    -h, --help                              Show this help
+    -v, --version                           Show version
 
   Examples:
-    $ # Show permanent proxy setting
-    $ proxy -p --get
-    $ http_proxy=http://localhost:51837
+    proxy --set http://localhost:51837      Set the default proxy value
 
-    $ # Execute a command with proxy
-    $ proxy -- http curl https://www.google.com`
-  )
+    proxy --on                              Turn on permanent shell proxy
+    proxy --on ftp                          Turn on permanent shell proxy for specific protocals
+
+    proxy -- curl https://www.google.com    Run a command temporarily with default proxy value
+  `,
+  );
 }

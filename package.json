@@ -1,27 +1,59 @@
 {
   "name": "@gloxy/proxy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "bin": {
     "proxy": "bin/cli.js"
   },
-  "type": "module",
   "scripts": {
     "dev": "tsc -w",
     "build": "rimraf ./lib && tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint --ext \".js,.ts\" .",
+    "fix": "npm run lint -- --fix",
+    "pretty": "prettier --write --ignore-path .gitignore .",
+    "prepare": "husky install"
   },
-  "keywords": [],
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "keywords": [
+    "proxy",
+    "shell",
+    "cli",
+    "command"
+  ],
   "author": "glorywong1001@gmail.com",
   "license": "MIT",
   "devDependencies": {
+    "@tsconfig/node16": "^16.1.0",
+    "@types/configstore": "^6.0.0",
     "@types/minimist": "^1.2.2",
-    "@types/node": "^17.0.17",
-    "rimraf": "^3.0.2"
+    "@types/node": "^20.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.1",
+    "type-fest": "^3.13.0",
+    "typescript": "^5.1.6",
+    "vitest": "^0.33.0"
   },
   "dependencies": {
-    "execa": "^6.0.0",
-    "minimist": "^1.2.5",
-    "read-pkg-up": "^9.1.0"
+    "chalk": "^4.1.2",
+    "configstore": "^6.0.0",
+    "execa": "^7.1.1",
+    "minimist": "^1.2.8",
+    "read-pkg-up": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=15"
   }
 }
