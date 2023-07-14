@@ -1,7 +1,37 @@
-# @gloxy/proxy
+<h1 align="center">Welcome to gloxy-proxy 👋</h1>
+<p>
+  <a href="https://www.npmjs.com/package/@gloxy/proxy" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/@gloxy/proxy.svg">
+  </a>
+  <a href="https://github.com/GloryWong/proxy/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/GloryWong/proxy" />
+  </a>
+</p>
 
-Set a temporary proxy for a command run or set permanent shell proxy.
+> A NodeJS CLI: setup proxy for command execution or permanent shell sessions.
 
-# Usage
+## Install
+
+```bash
+npm install --global @gloxy/proxy
+# or
+yarn global add @gloxy/proxy
+```
+
+## Usage
 
 See `proxy --help`
+
+## Author
+
+👤 **GloryWong**
+
+* Website: https://zhaozhao.today
+* GitHub: [@GloryWong](https://github.com/GloryWong)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!

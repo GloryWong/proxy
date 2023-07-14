@@ -1,7 +1,7 @@
 {
   "name": "@gloxy/proxy",
   "version": "0.2.0",
-  "description": "",
+  "description": "CLI: Setup proxy for command execution or permanent shell sessions",
   "bin": {
     "proxy": "bin/cli.js"
   },
@@ -27,6 +27,14 @@
   ],
   "author": "glorywong1001@gmail.com",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GloryWong/proxy/issues"
+  },
+  "homepage": "https://github.com/GloryWong/proxy#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GloryWong/proxy.git"
+  },
   "devDependencies": {
     "@tsconfig/node16": "^16.1.0",
     "@types/configstore": "^6.0.0",
