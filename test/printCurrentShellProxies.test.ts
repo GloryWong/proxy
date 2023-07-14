@@ -47,7 +47,7 @@ describe('Print present shell proxies', () => {
   });
 
   test('Partial proxies are set', async () => {
-    setDefaultProxyValue(DEFAULT_PROXY_VALUE);
+    await setDefaultProxyValue(DEFAULT_PROXY_VALUE);
     await actOnShellProxies({ on: 'http' });
 
     expectPrintProxy('http', DEFAULT_PROXY_VALUE);

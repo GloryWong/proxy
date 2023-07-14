@@ -14,19 +14,19 @@ describe('Set default proxy value', () => {
   beforeEach(store);
 
   test('should throw error when no input proxy value is provied', async () => {
-    expect(() => actOnShellProxies({ set: '' })).rejects.toThrowError();
+    await expect(() => actOnShellProxies({ set: '' })).rejects.toThrowError();
   });
 
   test('should set new default proxy value', async () => {
-    deleteDefaultProxyValue();
+    await deleteDefaultProxyValue();
     await actOnShellProxies({ set: DEFAULT_PROXY_VALUE });
-    expect(getDefaultProxyValue()).toBe(DEFAULT_PROXY_VALUE);
+    await expect(getDefaultProxyValue()).resolves.toBe(DEFAULT_PROXY_VALUE);
   });
 
   test('should replace old default proxy value', async () => {
-    setDefaultProxyValue(DEFAULT_PROXY_VALUE);
+    await setDefaultProxyValue(DEFAULT_PROXY_VALUE);
     await actOnShellProxies({ set: DEFAULT_PROXY_VALUE_1 });
-    expect(getDefaultProxyValue()).toBe(DEFAULT_PROXY_VALUE_1);
+    await expect(getDefaultProxyValue()).resolves.toBe(DEFAULT_PROXY_VALUE_1);
   });
 
   afterEach(restore);
