@@ -40,7 +40,7 @@ describe('Proxy command', () => {
   });
 
   test('should proxies be accessed in command', async () => {
-    setDefaultProxyValue(DEFAULT_PROXY_VALUE);
+    await setDefaultProxyValue(DEFAULT_PROXY_VALUE);
     const proxyEnvNames = proxyNames.map((v) => createProxyEnvName(v));
     await proxyCmd(
       `node cmd-env-var-mock.js proxies-for-cmd ${proxyEnvNames.join(' ')}`,

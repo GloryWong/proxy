@@ -32,11 +32,11 @@ describe('Turn on and off proxies', () => {
 
   describe('Without default proxy value', () => {
     beforeEach(() => {
-      deleteDefaultProxyValue();
+      return deleteDefaultProxyValue();
     });
 
     test('should throw error when no default proxy value is set', async () => {
-      return expect(() => actOnShellProxies({ on: '' })).rejects.toThrowError(
+      await expect(() => actOnShellProxies({ on: '' })).rejects.toThrowError(
         'default proxy',
       );
     });
@@ -44,7 +44,7 @@ describe('Turn on and off proxies', () => {
 
   describe('With default proxy value', () => {
     beforeEach(() => {
-      setDefaultProxyValue(DEFAULT_PROXY_VALUE);
+      return setDefaultProxyValue(DEFAULT_PROXY_VALUE);
     });
 
     test('should turn on and off a single proxy', async () => {

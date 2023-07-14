@@ -11,7 +11,7 @@ import {
 import chalk from 'chalk';
 
 export async function proxyCmd(command: string, options?: Options) {
-  if (!hasDefaultProxyValue()) {
+  if (!(await hasDefaultProxyValue())) {
     throw new Error(
       'You are trying to use proxy, but no default proxy value is set. See `proxy --help`.',
     );

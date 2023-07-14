@@ -13,7 +13,7 @@ import {
 import { EOL } from 'os';
 
 async function turnOn(proxyName: ProxyName | '', shellName?: string) {
-  if (!hasDefaultProxyValue())
+  if (!(await hasDefaultProxyValue()))
     throw new Error('Please set the default proxy value first.');
 
   const proxyValue: string = await getDefaultProxyValue();
@@ -70,7 +70,7 @@ export async function actOnShellProxies({
     await turnOff(off);
   } else if (set !== undefined) {
     if (set.trim() === '') throw 'Please provide proxy value to be set.';
-    setDefaultProxyValue(set);
+    await setDefaultProxyValue(set);
   }
 
   await printProxies();
