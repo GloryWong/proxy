@@ -1,5 +1,11 @@
 <h1 align="center">Welcome to gloxy-proxy 👋</h1>
 <p>
+  <a href="#" target="_blank">
+    <img alt="npm" src="https://img.shields.io/npm/dw/%40gloxy/proxy">
+  </a>
+  <a href="#" target="_blank">
+    <img alt="node-current (scoped)" src="https://img.shields.io/node/v/%40gloxy/proxy">
+  </a>
   <a href="https://www.npmjs.com/package/@gloxy/proxy" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/@gloxy/proxy.svg">
   </a>
@@ -17,7 +23,10 @@
 
 ```bash
 npm install --global @gloxy/proxy
-# or
+```
+or
+
+```bash
 yarn global add @gloxy/proxy
 ```
 
