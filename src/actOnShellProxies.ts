@@ -4,6 +4,7 @@ import {
   getDefaultProxyValue,
   getShellName,
   hasDefaultProxyValue,
+  isValidProxyURL,
   proxyNames,
   readShellProxies,
   setDefaultProxyValue,
@@ -69,8 +70,10 @@ export async function actOnShellProxies({
   } else if (off !== undefined) {
     await turnOff(off);
   } else if (set !== undefined) {
-    if (set.trim() === '') throw 'Please provide proxy value to be set.';
-    await setDefaultProxyValue(set);
+    const _set = set.trim();
+    if (_set === '') throw 'Please provide proxy value to be set.';
+    if (!isValidProxyURL(_set)) throw `${_set} is an invalid proxy url`;
+    await setDefaultProxyValue(_set);
   }
 
   await printProxies();

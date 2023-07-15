@@ -14,7 +14,15 @@ describe('Set default proxy value', () => {
   beforeEach(store);
 
   test('should throw error when no input proxy value is provied', async () => {
-    await expect(() => actOnShellProxies({ set: '' })).rejects.toThrowError();
+    await expect(() => actOnShellProxies({ set: '' })).rejects.toThrowError(
+      'provide proxy',
+    );
+  });
+
+  test('should throw error when the input proxy value is invalid', async () => {
+    await expect(() =>
+      actOnShellProxies({ set: 'proxy:' }),
+    ).rejects.toThrowError('invalid');
   });
 
   test('should set new default proxy value', async () => {

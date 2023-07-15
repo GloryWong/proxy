@@ -2,6 +2,7 @@ export * from './default-proxy-value';
 export * from './getConfigStore';
 export * from './getShellConfigPath';
 export * from './getShellName';
+export * from './isValidProxyURL';
 export * from './isWinOS';
 export * from './proxyRegexps';
 export * from './readShellConfig';
