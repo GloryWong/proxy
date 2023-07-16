@@ -1,6 +1,6 @@
 {
   "name": "@gloxy/proxy",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "CLI: Setup proxy for command execution or permanent shell sessions",
   "bin": {
     "proxy": "bin/cli.js"
@@ -13,7 +13,8 @@
     "lint": "eslint --ext \".js,.ts\" .",
     "fix": "npm run lint -- --fix",
     "pretty": "prettier --write --ignore-path .gitignore .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "bin",
