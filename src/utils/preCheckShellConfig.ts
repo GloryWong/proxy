@@ -7,7 +7,7 @@ export async function preCheckShellConfig(shellName?: string) {
   }
 
   // check availability of the shell config file
-  const configPath = getShellConfigPath(shellName);
+  const configPath = await getShellConfigPath(shellName);
   try {
     await access(configPath, constants.F_OK | constants.R_OK | constants.W_OK);
   } catch (error) {
