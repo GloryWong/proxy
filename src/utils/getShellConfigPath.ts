@@ -15,6 +15,8 @@ export function getShellConfigPath(shellName?: string) {
   }
 
   switch (shellName) {
+    case 'sh':
+    case 'dash':
     case 'bash':
       return getPath('.bashrc');
     case 'zsh':
@@ -27,9 +29,6 @@ export function getShellConfigPath(shellName?: string) {
     case 'ksh':
     case 'mksh':
       return getPath('.kshrc');
-    case 'sh':
-    case 'dash':
-      throw 'sh and dash do not have a specific configuration file';
     default:
       throw `Unknown shell configuration path (${shellName})`;
   }

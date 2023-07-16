@@ -4,6 +4,7 @@ import {
   getDefaultProxyValue,
   hasDefaultProxyValue,
   isValidProxyURL,
+  preCheckShellConfig,
   printShellProxies,
   proxyNames,
   setDefaultProxyValue,
@@ -74,6 +75,8 @@ export async function actOnShellProxies({
   off?: ProxyName | '';
   set?: string;
 }) {
+  await preCheckShellConfig();
+
   if (on !== undefined) {
     return turnOn(on);
   } else if (off !== undefined) {
