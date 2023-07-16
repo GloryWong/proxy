@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to gloxy-proxy 👋</h1>
+<h1 align="center">Gloxy Proxy</h1>
 <p>
   <a href="#" target="_blank">
     <img alt="npm" src="https://img.shields.io/npm/dw/%40gloxy/proxy">
@@ -17,7 +17,17 @@
   </a>
 </p>
 
-> A NodeJS CLI: setup proxy for command execution or permanent shell sessions.
+Gloxy Proxy is a NodeJS based command-line tool that provides quick and flexible control over your proxy settings, allowing temporary proxy for one-off command runs or a permanent proxy for your shell.
+
+* Temporary Proxy: Execute a command with a custom proxy, without changing your global settings. Perfect for isolated tasks or testing.
+
+* Permanent Proxy: Set a permanent proxy for your shell, making it the default for all your future commands. No need to set the proxy each time.
+
+Master your network proxy settings swiftly and flexibly.
+
+> Support
+>  * Platforms: **Unix-like**
+>  * Shells: bash, zsh, sh, dash, fish, csh, tcsh, ksh, mksh.
 
 ## Install
 

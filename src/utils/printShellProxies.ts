@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { EOL } from 'os';
-import { readShellProxies, getDefaultProxyValue, getShellName } from '.';
+import { readShellProxies, getDefaultProxyValue, getCurrentShellName } from '.';
 
 interface Options {
   printHead?: () => void;
@@ -20,7 +20,7 @@ export async function printShellProxies(shellName?: string, options?: Options) {
   console.log(
     'Default proxy server:',
     defaultProxyValue ? defaultProxyValue : chalk.dim('(unset)'),
-    `${EOL}Current shell: ${getShellName()}`,
+    `${EOL}Current shell: ${getCurrentShellName()}`,
     EOL + '--------------',
   );
   proxies.forEach((value, key) => {

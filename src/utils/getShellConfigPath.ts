@@ -1,35 +1,13 @@
-import { join } from 'path';
-import { isWinOS } from './isWinOS';
-import { homedir } from 'os';
-import { getShellName } from './getShellName';
-
-function getPath(configFileName: string) {
-  return join(homedir(), configFileName);
-}
+import { getCurrentShellName } from './getCurrentShellName';
+import { supportedShells } from '../constants';
 
 export function getShellConfigPath(shellName?: string) {
-  shellName = shellName ?? getShellName();
+  shellName = shellName ?? getCurrentShellName();
 
-  if (isWinOS()) {
-    throw 'Windows shell configurations are stored in the registry.';
+  const shell = supportedShells.find((v) => v.name === shellName);
+  if (!shell) {
+    throw new Error(`Shell \`${shellName}\` is unsupported`);
   }
 
-  switch (shellName) {
-    case 'sh':
-    case 'dash':
-    case 'bash':
-      return getPath('.bashrc');
-    case 'zsh':
-      return getPath('.zshrc');
-    case 'fish':
-      return getPath('.config/fish/config.fish');
-    case 'csh':
-    case 'tcsh':
-      return getPath('.cshrc');
-    case 'ksh':
-    case 'mksh':
-      return getPath('.kshrc');
-    default:
-      throw `Unknown shell configuration path (${shellName})`;
-  }
+  return shell.configPath;
 }

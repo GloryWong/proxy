@@ -5,7 +5,9 @@ export default async function () {
     `  Gloxy Proxy (v${await getVersion()})
 
   Description:
-    Set a temporary proxy for a command run or set permanent shell proxy.
+    Set up temporary proxy for one-off command runs or a permanent proxy for your shell.
+
+  Note: Windows platform is currently unsupported.
 
   Usage:
     proxy [options]
