@@ -1,4 +1,4 @@
-name: Test on multiple platforms
+name: Test on push and pull request
 
 on:
   push:
@@ -8,23 +8,4 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node-version: [16, 18, 19]
-        os: [ubuntu-latest, macos-latest]
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm test
+    uses: ./.github/workflows/reusable-test.yml
