@@ -13,8 +13,7 @@
     "lint": "eslint --ext \".js,.ts\" .",
     "fix": "npm run lint -- --fix",
     "pretty": "prettier --write --ignore-path .gitignore .",
-    "prepare": "husky install",
-    "prepublishOnly": "npm test && npm run build"
+    "prepare": "husky install"
   },
   "files": [
     "bin",
