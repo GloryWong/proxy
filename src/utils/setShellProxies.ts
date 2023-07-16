@@ -6,6 +6,7 @@ import {
 } from './proxyRegexps';
 import { EOL } from 'os';
 import { writeShellConfig } from './writeShellConfig';
+import { printShellProxiesUpdate } from '.';
 
 type ProxyValue = Partial<Record<ProxyName, string>> | string;
 
@@ -14,6 +15,7 @@ export async function setShellProxies(
   shellName?: string,
 ) {
   let shellConfig = await readShellConfig(shellName);
+  let changed = false;
 
   function getProxyValue(proxyName: ProxyName) {
     if (typeof proxyValue === 'string') {
@@ -32,7 +34,11 @@ export async function setShellProxies(
     } else {
       shellConfig += EOL + createProxyEnvVar(name, proxyValue);
     }
+
+    changed = true;
   });
 
-  writeShellConfig(shellConfig);
+  await writeShellConfig(shellConfig, shellName);
+
+  await printShellProxiesUpdate(changed, shellName);
 }

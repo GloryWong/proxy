@@ -1,3 +1,4 @@
+import { printShellProxiesUpdate } from '.';
 import { ProxyNames, iterateProxyRegexps } from './proxyRegexps';
 import { readShellConfig } from './readShellConfig';
 import { writeShellConfig } from './writeShellConfig';
@@ -7,11 +8,18 @@ export async function unsetShellProxies(
   shellName?: string,
 ) {
   let shellConfig = await readShellConfig(shellName);
+  let changed = false;
 
   iterateProxyRegexps((name, regexp) => {
     if (!proxyNames.includes(name)) return;
-    shellConfig = shellConfig.replace(regexp, '');
+
+    if (regexp.test(shellConfig)) {
+      shellConfig = shellConfig.replace(regexp, '');
+      changed = true;
+    }
   });
 
-  writeShellConfig(shellConfig);
+  await writeShellConfig(shellConfig);
+
+  await printShellProxiesUpdate(changed);
 }

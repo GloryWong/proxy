@@ -47,7 +47,7 @@ describe('Turn on and off proxies', () => {
       return setDefaultProxyValue(DEFAULT_PROXY_VALUE);
     });
 
-    test('should turn on and off a single proxy', async () => {
+    test('turn on or off a single proxy', async () => {
       await actOnShellProxies({ on: 'https' });
       await assertProxySet('https', DEFAULT_PROXY_VALUE);
 
@@ -55,7 +55,7 @@ describe('Turn on and off proxies', () => {
       await assertProxySet('https', DEFAULT_PROXY_VALUE, true);
     });
 
-    test('should turn on and off all proxies', async () => {
+    test('turn on or off all proxies', async () => {
       await actOnShellProxies({ on: '' });
       for (const proxyName of proxyNames) {
         await assertProxySet(proxyName, DEFAULT_PROXY_VALUE);

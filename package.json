@@ -1,6 +1,6 @@
 {
   "name": "@gloxy/proxy",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "CLI: Setup proxy for command execution or permanent shell sessions",
   "bin": {
     "proxy": "bin/cli.js"

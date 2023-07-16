@@ -2,16 +2,14 @@ import chalk from 'chalk';
 import {
   ProxyName,
   getDefaultProxyValue,
-  getShellName,
   hasDefaultProxyValue,
   isValidProxyURL,
+  printShellProxies,
   proxyNames,
-  readShellProxies,
   setDefaultProxyValue,
   setShellProxies,
   unsetShellProxies,
 } from './utils';
-import { EOL } from 'os';
 
 async function turnOn(proxyName: ProxyName | '', shellName?: string) {
   if (!(await hasDefaultProxyValue()))
@@ -20,9 +18,9 @@ async function turnOn(proxyName: ProxyName | '', shellName?: string) {
   const proxyValue: string = await getDefaultProxyValue();
 
   if (proxyName === '') {
-    return setShellProxies(proxyValue, shellName);
+    await setShellProxies(proxyValue, shellName);
   } else {
-    return setShellProxies(
+    await setShellProxies(
       {
         [proxyName]: proxyValue,
       },
@@ -31,28 +29,39 @@ async function turnOn(proxyName: ProxyName | '', shellName?: string) {
   }
 }
 
-function turnOff(proxyName: ProxyName | '', shellName?: string) {
+async function turnOff(proxyName: ProxyName | '', shellName?: string) {
   if (proxyName === '') {
-    return unsetShellProxies(proxyNames, shellName);
+    await unsetShellProxies(proxyNames, shellName);
   } else {
-    return unsetShellProxies([proxyName], shellName);
+    await unsetShellProxies([proxyName], shellName);
   }
 }
 
-async function printProxies(shellName?: string) {
-  const proxies = await readShellProxies(shellName);
-  const defaultProxyValue = await getDefaultProxyValue();
+async function setDefault(proxyValue: string) {
+  if (proxyValue === '') throw 'Please provide proxy value to be set.';
 
-  console.log(
-    'Default proxy server:',
-    defaultProxyValue ? defaultProxyValue : chalk.dim('(unset)'),
-    `${EOL}Current shell: ${getShellName()}`,
-    EOL + '--------------',
-  );
-  proxies.forEach((value, key) => {
+  if (!isValidProxyURL(proxyValue))
+    throw `${proxyValue} is an invalid proxy url`;
+
+  const oldDefaultProxyValue = await getDefaultProxyValue();
+  if (proxyValue === oldDefaultProxyValue) {
     console.log(
-      chalk.green(key) + ': ' + (value ? value : chalk.dim('(unset)')),
+      'Nothing changed: identical to the existing proxy default value.',
     );
+    return;
+  }
+
+  await setDefaultProxyValue(proxyValue);
+
+  await printShellProxies(undefined, {
+    printHead: () => {
+      console.log(
+        'Proxy default value changed',
+        chalk.yellow(oldDefaultProxyValue),
+        '->',
+        chalk.yellow(proxyValue),
+      );
+    },
   });
 }
 
@@ -66,15 +75,12 @@ export async function actOnShellProxies({
   set?: string;
 }) {
   if (on !== undefined) {
-    await turnOn(on);
+    return turnOn(on);
   } else if (off !== undefined) {
-    await turnOff(off);
+    return turnOff(off);
   } else if (set !== undefined) {
-    const _set = set.trim();
-    if (_set === '') throw 'Please provide proxy value to be set.';
-    if (!isValidProxyURL(_set)) throw `${_set} is an invalid proxy url`;
-    await setDefaultProxyValue(_set);
+    return setDefault(set.trim());
   }
 
-  await printProxies();
+  await printShellProxies();
 }

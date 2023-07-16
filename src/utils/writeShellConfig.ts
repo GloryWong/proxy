@@ -6,5 +6,5 @@ export async function writeShellConfig(
   shellName?: string,
 ) {
   const configPath = getShellConfigPath(shellName);
-  return writeFile(configPath, shellConfig, 'utf-8');
+  await writeFile(configPath, shellConfig, 'utf-8');
 }

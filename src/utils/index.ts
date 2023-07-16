@@ -10,3 +10,5 @@ export * from './readShellProxies';
 export * from './setShellProxies';
 export * from './unsetShellProxies';
 export * from './writeShellConfig';
+export * from './printShellProxies';
+export * from './printShellProxiesUpdate';

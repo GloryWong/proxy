@@ -15,7 +15,7 @@ import { DEFAULT_PROXY_VALUE } from './test-data';
 
 const { store, restore } = createBasicEnv();
 
-describe('Print present shell proxies', () => {
+describe('Print current shell proxies', () => {
   let consoleLogSpy: SpyInstance;
 
   function expectPrintProxy(proxyName: ProxyName, proxyValue: string) {
